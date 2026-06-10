@@ -15,7 +15,7 @@ def usar_pocion(vida_actual, esta_envenenado):
         
     return vida_final
 
-print("--- Simulando inicio de partida ---")
+print("-- Simulando inicio de partida --")
 vida_jugador = 60
 
 vida_jugador = usar_pocion(vida_jugador, esta_envenenado=True)

@@ -17,7 +17,7 @@ def atacar(arma_actual):
         print("✅ El arma sigue en buen estado.")
     return arma_actual
 
-print("--- ¡Aparece un monstruo! ---")
+print("-- ¡Aparece un monstruo! --")
 espada = atacar(espada)
 print("------------------------------")
 espada = atacar(espada)
