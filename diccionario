@@ -1,30 +1,25 @@
-# Creamos el diccionario del arma
+
 espada = {
     "nombre": "Espada Oxidada",
     "daño": 15,
-    "durabilidad": 10  # ¡Le queda muy poca durabilidad!
+    "durabilidad": 10 
 }
 
 def atacar(arma_actual):
-    # 1. Al atacar, le restamos 5 de durabilidad al arma
+
     arma_actual["durabilidad"] = arma_actual["durabilidad"] - 5
     print(f"⚔️ ¡Atacaste! La durabilidad de tu {arma_actual['nombre']} ahora es de {arma_actual['durabilidad']}.")
     
-    # === TU RETO AQUÍ ===
-    # Si la durabilidad del arma llega a 0 (o menos), debes cambiar su "daño" a 0 
-    # y mostrar un mensaje que diga: "❌ ¡El arma se ha roto! Tu daño ahora es 0."
-    # Si no, debes mostrar: "✅ El arma sigue en buen estado."
     if arma_actual["durabilidad"] <= 0:
-        arma_actual["daño"] = 0  # <--- Aquí SÍ estamos modificando el diccionario
+        arma_actual["daño"] = 0 
         print(f"❌ ¡El arma se ha roto! Tu daño ahora es {arma_actual['daño']}.")
     else:
         print("✅ El arma sigue en buen estado.")
     return arma_actual
 
-# --- Simulando el combate ---
 print("--- ¡Aparece un monstruo! ---")
-espada = atacar(espada) # Primer ataque (baja de 10 a 5)
+espada = atacar(espada)
 print("------------------------------")
-espada = atacar(espada) # Segundo ataque (baja de 5 a 0 - ¡Aquí debería romperse!)
+espada = atacar(espada)
 
 print(espada)

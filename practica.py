@@ -15,9 +15,7 @@ def usar_pocion(vida_actual, esta_envenenado):
         
     return vida_final
 
-# --- Probando el script ---
 print("--- Simulando inicio de partida ---")
 vida_jugador = 60
 
-# Probamos usando la poción estallando el veneno en True
 vida_jugador = usar_pocion(vida_jugador, esta_envenenado=True)
