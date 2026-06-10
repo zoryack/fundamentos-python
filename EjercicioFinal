@@ -1,0 +1,24 @@
+
+cofres_caidos = [
+    {"tipo": "Cofre de Madera", "oro": 100, "maldito": False},
+    {"tipo": "Cofre de Hierro", "oro": 250, "maldito": True},  
+    {"tipo": "Cofre de Plata", "oro": 500, "maldito": False}
+]
+
+def recolectar_botin(lista_de_cofres):
+    total_oro = 0
+    print("--- 💰 Abriendo los cofres recolectados ---")
+    
+    for cofre in lista_de_cofres:
+        
+        if cofre["maldito"]: 
+            print("☠️ Cofre maldito, no hay oro aquí")
+        else:            
+            total_oro += cofre["oro"] 
+            print(f"Encontraste {cofre['oro']} oro")
+  
+    print("------------------------------------------")
+    print(f"🏆 Fin de la recolección. Oro total guardado: {total_oro}")
+    return total_oro
+
+oro_final = recolectar_botin(cofres_caidos)
