@@ -18,7 +18,9 @@ def recolectar_botin(lista_de_cofres):
             print(f"Encontraste {cofre['oro']} oro")
   
     print("------------------------------------------")
+    
     print(f"🏆 Fin de la recolección. Oro total guardado: {total_oro}")
+
     return total_oro
 
 oro_final = recolectar_botin(cofres_caidos)
