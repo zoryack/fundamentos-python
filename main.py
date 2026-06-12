@@ -1,56 +1,44 @@
 from fastapi import FastAPI
-
-app = FastAPI()
-
-inventario_servidor = [
-    {"id": 1, "nombre": "Poción de Vida", "cantidad": 3},
-    {"id": 2, "nombre": "Escudo de Madera", "cantidad": 1},
-    {"id": 3, "nombre": "Espada Oxidada", "cantidad": 1}
-]
-from fastapi import FastAPI
+from pydantic import BaseModel
 import sqlite3
 
 app = FastAPI()
+
+class ItemEsquema(BaseModel):
+    nombre: str
+    cantidad: int
 
 def conectar_db():
     conexion = sqlite3.connect("inventario.db")
     conexion.row_factory = sqlite3.Row
     return conexion
 
-
-
 @app.get("/inventario")
 def obtener_inventario():
     conexion = conectar_db()
     cursor = conexion.cursor()
-    
-
     cursor.execute("SELECT * FROM items")
     filas = cursor.fetchall()
-    
     lista_items = [dict(fila) for fila in filas]
-    
     conexion.close()
     return lista_items
 
 
-
-@app.get("/agregar")
-def agregar_objeto():
+@app.post("/items")
+def agregar_objeto(item_nuevo: ItemEsquema):
     conexion = conectar_db()
     cursor = conexion.cursor()
-    
-    nuevo_nombre = "Escudo de Madera"
-    nueva_cantidad = 1
     
 
     cursor.execute(
         "INSERT INTO items (nombre, cantidad) VALUES (?, ?)", 
-        (nuevo_nombre, nueva_cantidad)
+        (item_nuevo.nombre, item_nuevo.cantidad)
     )
     
-  
     conexion.commit()
     conexion.close()
     
-    return {"mensaje": f"¡{nuevo_nombre} guardado permanentemente en la Base de Datos! 💾"}
+    return {
+        "mensaje": "¡Objeto guardado dinámicamente!",
+        "datos_guardados": item_nuevo
+    }
